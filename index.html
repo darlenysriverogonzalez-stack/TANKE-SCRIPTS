@@ -63,30 +63,11 @@ nav a{
 color:white;
 text-decoration:none;
 transition:.2s;
+cursor:pointer;
 }
 
 nav a:hover{
 color:#00A3FF;
-}
-
-/* CART */
-.cart{
-position:fixed;
-right:20px;
-top:80px;
-width:300px;
-background:#0b0f2a;
-padding:20px;
-border-radius:15px;
-border:1px solid rgba(255,255,255,.1);
-display:none;
-z-index:2000;
-}
-
-.item{
-display:flex;
-justify-content:space-between;
-margin:8px 0;
 }
 
 /* HERO */
@@ -106,13 +87,22 @@ font-weight:900;
 
 .hero span{color:#00A3FF;}
 
-/* SECTION */
-.section{padding:120px 8%;}
+/* SECTIONS */
+.section{
+display:none;
+padding:120px 8%;
+opacity:0;
+transform:translateY(10px);
+}
 
-.section-title{
-font-size:50px;
-text-align:center;
-margin-bottom:60px;
+.section.active{
+display:block;
+animation:fadeIn .4s ease forwards;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(10px);}
+to{opacity:1; transform:translateY(0);}
 }
 
 /* CARDS */
@@ -138,38 +128,31 @@ margin:10px 0;
 
 /* BUTTONS */
 .buy-btn,
-.free-btn{
+.free-btn,
+.yt-btn{
 display:flex;
 justify-content:center;
 padding:14px;
 border-radius:12px;
-cursor:pointer;
 font-weight:800;
 transition:.25s ease;
 text-decoration:none;
+margin-top:10px;
+cursor:pointer;
 }
 
-.buy-btn{
-background:#5865F2;
-color:white;
-}
+.buy-btn{background:#5865F2;color:white;}
+.free-btn{background:linear-gradient(135deg,#00A3FF,#0070F3);color:white;}
+.yt-btn{background:#FF0000;color:white;}
 
-.buy-btn:hover{
+.buy-btn:hover,
+.free-btn:hover,
+.yt-btn:hover{
 transform:translateY(-4px) scale(1.04);
-box-shadow:0 10px 25px rgba(88,101,242,.35);
+box-shadow:0 10px 25px rgba(0,0,0,.3);
 }
 
-.free-btn{
-background:linear-gradient(135deg,#00A3FF,#0070F3);
-color:white;
-}
-
-.free-btn:hover{
-transform:translateY(-4px) scale(1.04);
-box-shadow:0 10px 25px rgba(0,163,255,.35);
-}
-
-/* 🔒 DISCORD GATE */
+/* GATE */
 #gate{
 position:fixed;
 top:0;
@@ -193,17 +176,7 @@ border:1px solid rgba(255,255,255,.1);
 max-width:400px;
 }
 
-.gate-box h1{
-color:#00A3FF;
-margin-bottom:10px;
-}
-
-.gate-box p{
-color:#aaa;
-margin-bottom:20px;
-}
-
-/* 🔥 BOTONES CON ANIMACIONES */
+/* 🔥 BOTONES CON ANIMACIÓN RESTAURADA */
 .gate-btn,
 .gate-enter{
 display:block;
@@ -219,27 +192,24 @@ overflow:hidden;
 border:none;
 }
 
-/* Discord button */
 .gate-btn{
 background:#5865F2;
 color:white;
 margin-bottom:10px;
 }
 
-/* Enter button */
 .gate-enter{
 background:#00A3FF;
 color:white;
 }
 
-/* hover effect */
 .gate-btn:hover,
 .gate-enter:hover{
 transform:translateY(-4px) scale(1.05);
 box-shadow:0 0 25px rgba(0,163,255,0.4);
 }
 
-/* shine effect */
+/* SHINE EFFECT */
 .gate-btn::before,
 .gate-enter::before{
 content:"";
@@ -267,7 +237,7 @@ animation:shine 0.8s ease;
 
 <body>
 
-<!-- 🔒 GATE -->
+<!-- GATE -->
 <div id="gate">
   <div class="gate-box">
     <h1>💎 TANKE SCRIPTS</h1>
@@ -290,70 +260,129 @@ animation:shine 0.8s ease;
 <div class="logo">💻 TankeScripts</div>
 
 <ul>
-<li><a href="#premium">💎 Premium</a></li>
-<li><a href="#gratis">🎁 Gratis</a></li>
+<li><a href="javascript:void(0)" onclick="showSection('inicio')">🏠 Inicio</a></li>
+<li><a href="javascript:void(0)" onclick="showSection('premium')">💎 Premium</a></li>
+<li><a href="javascript:void(0)" onclick="showSection('gratis')">🎁 Gratis</a></li>
+<li><a href="javascript:void(0)" onclick="showSection('discord')">💬 Discord</a></li>
+<li><a href="javascript:void(0)" onclick="showSection('contacto')">📩 Contacto</a></li>
 </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
+<!-- INICIO -->
+<section class="section active" id="inicio">
+<div class="hero">
 <h1>Scripts <span>TANKE</span></h1>
+<p style="margin-top:20px;color:#aaa;font-size:20px;">
+Los mejores scripts para tu servidor
+</p>
+</div>
 </section>
 
 <!-- PREMIUM -->
 <section class="section" id="premium">
+
 <h2 class="section-title">💎 Premium Scripts</h2>
 
 <div class="cards">
 
 <div class="card">
-<h3>Script En espera</h3>
+<img src="https://via.placeholder.com/400x200">
+<h3>Script Premium 1</h3>
 <div class="price">19€</div>
-<a href="https://discord.gg/TUINVITACION" target="_blank" class="buy-btn">Comprar 💎</a>
+<a href="https://discord.gg/zZKyfuZTUP" class="buy-btn">Comprar 💎</a>
+<a href="https://youtube.com" class="yt-btn">YouTube ▶</a>
 </div>
 
 <div class="card">
-<h3>Script En espera</h3>
-<div class="price">29€</div>
-<a href="https://discord.gg/TUINVITACION" target="_blank" class="buy-btn">Comprar 💎</a>
-</div>
-
-<div class="card">
-<h3>Script En espera</h3>
+<img src="https://via.placeholder.com/400x200">
+<h3>Script Premium 2</h3>
 <div class="price">24€</div>
-<a href="https://discord.gg/TUINVITACION" target="_blank" class="buy-btn">Comprar 💎</a>
+<a href="https://discord.gg/zZKyfuZTUP" class="buy-btn">Comprar 💎</a>
+<a href="https://youtube.com" class="yt-btn">YouTube ▶</a>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/400x200">
+<h3>Script Premium 3</h3>
+<div class="price">29€</div>
+<a href="https://discord.gg/zZKyfuZTUP" class="buy-btn">Comprar 💎</a>
+<a href="https://youtube.com" class="yt-btn">YouTube ▶</a>
+</div>
+
+<div class="card">
+<img src="https://via.placeholder.com/400x200">
+<h3>Script Premium 4</h3>
+<div class="price">34€</div>
+<a href="https://discord.gg/zZKyfuZTUP" class="buy-btn">Comprar 💎</a>
+<a href="https://youtube.com" class="yt-btn">YouTube ▶</a>
 </div>
 
 </div>
+
 </section>
 
 <!-- GRATIS -->
 <section class="section" id="gratis">
+
 <h2 class="section-title">🎁 Scripts Gratis</h2>
 
 <div class="cards">
 
 <div class="card">
-<h3>Script Trabajo Camionero</h3>
-<a href="https://drive.google.com/file/d/1cVVBtjEE-nUZir_w6CZSE1Lq9GvQku8h/view" target="_blank" class="free-btn">Descargar ⬇</a>
+<img src="https://cdn.discordapp.com/attachments/1454568530472075329/1512126775830909189/a690dbdc-6041-4292-a055-4fbf1d05db19.png?ex=6a22f54d&is=6a21a3cd&hm=44d404476eba2fda03a02b29227cc6b888c2a64e22465d0a60a1c2cc073af92b&" style="width:25%;border-radius:15px;margin-bottom:15px;">
+<h3>🚛Camionero</h3>
+<a href="https://drive.google.com/file/d/1cVVBtjEE-nUZir_w6CZSE1Lq9GvQku8h/view" class="free-btn">Descargar ⬇</a>
+<a href="https://youtu.be/cE3zW793bCo?si=xzj0IdZTJOLM4-eT" class="yt-btn">Ver Script En YouTube ▶</a>
+<a href="https://youtu.be/2tza63OV2WU?si=LidL6rlW-M9jkzfD" class="yt-btn">YouTube Tutorial ▶</a>
 </div>
 
 <div class="card">
-<h3>Script En espera</h3>
-<a href="https://drive.google.com" target="_blank" class="free-btn">Descargar ⬇</a>
+<img src="https://via.placeholder.com/400x200" style="width:25%;border-radius:15px;margin-bottom:15px;">
+<h3>Script En Espera</h3>
+<a href="https://drive.google.com" class="free-btn">Descargar ⬇</a>
+<a href="https://youtube.com" class="yt-btn">Ver Script En YouTube ▶</a>
+<a href="https://youtube.com" class="yt-btn">YouTube Tutorial ▶</a>
 </div>
 
 <div class="card">
-<h3>Script En espera</h3>
-<a href="https://drive.google.com" target="_blank" class="free-btn">Descargar ⬇</a>
+<img src="https://via.placeholder.com/400x200" style="width:25%;border-radius:15px;margin-bottom:15px;">
+<h3>Script En Espera</h3>
+<a href="https://drive.google.com" class="free-btn">Descargar ⬇</a>
+<a href="https://youtube.com" class="yt-btn">Ver Script En YouTube ▶</a>
+<a href="https://youtube.com" class="yt-btn">YouTube Tutorial ▶</a>
 </div>
 
+<div class="card">
+<img src="https://via.placeholder.com/400x200" style="width:25%;border-radius:15px;margin-bottom:15px;">
+<h3>Script En Espera</h3>
+<a href="https://drive.google.com" class="free-btn">Descargar ⬇</a>
+<a href="https://youtube.com" class="yt-btn">Ver Script En YouTube▶</a>
+<a href="https://youtube.com" class="yt-btn">YouTube Tutorial ▶</a>
+</div>
+
+</div>
+
+</section>
+
+<!-- DISCORD -->
+<section class="section" id="discord">
+<h2 class="section-title">Discord</h2>
+<div class="card">
+<a href="https://discord.gg/zZKyfuZTUP" class="buy-btn">Entrar</a>
+</div>
+</section>
+
+<!-- CONTACTO -->
+<section class="section" id="contacto">
+<h2 class="section-title">Contacto</h2>
+<div class="card">
+<a href="https://discord.gg/zZKyfuZTUP" class="buy-btn">Soporte</a>
 </div>
 </section>
 
 <script>
 
-/* PARTICLES */
+// partículas
 const canvas=document.getElementById("particles");
 const ctx=canvas.getContext("2d");
 
@@ -361,7 +390,6 @@ canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 
 let particles=[];
-
 for(let i=0;i<60;i++){
 particles.push({
 x:Math.random()*canvas.width,
@@ -374,27 +402,27 @@ dy:(Math.random()-0.5)
 
 function animate(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
-
 particles.forEach(p=>{
 p.x+=p.dx;
 p.y+=p.dy;
-
 if(p.x<0||p.x>canvas.width)p.dx*=-1;
 if(p.y<0||p.y>canvas.height)p.dy*=-1;
-
 ctx.beginPath();
 ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
 ctx.fillStyle="rgba(0,163,255,0.5)";
 ctx.fill();
 });
-
 requestAnimationFrame(animate);
 }
-
 animate();
 
-/* ENTER SITE */
 function enterSite(){
+document.getElementById("gate").style.display="none";
+}
+
+function showSection(id){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 document.getElementById("gate").style.display="none";
 }
 
